@@ -109,12 +109,12 @@ Counting is kind of trivial; everyone can count! More usefully, we can run simpl
 ```python
 >>> files = layout.get(subject='sub-0[12]', run=1, extensions='.nii.gz')
 >>> files[0]
-File(filename='/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-02/ses-1/fmap/sub-02_ses-1_run-1_magnitude1.nii.gz', subject='sub-02', run='run-1', session='ses-1', type='magnitude1')
+File(filename='7t_trt/sub-02/ses-1/fmap/sub-02_ses-1_run-1_magnitude1.nii.gz', subject='sub-02', run='run-1', session='ses-1', type='magnitude1')
 
 >>> [f.path for f in files]
-['/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-02/ses-2/fmap/sub-02_ses-2_run-1_phasediff.nii.gz',
- '/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-01/ses-2/func/sub-01_ses-2_task-rest_acq-fullbrain_run-1_bold.nii.gz',
- '/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-02/ses-1/fmap/sub-02_ses-1_run-1_phasediff.nii.gz',
+['7t_trt/sub-02/ses-2/fmap/sub-02_ses-2_run-1_phasediff.nii.gz',
+ '7t_trt/sub-01/ses-2/func/sub-01_ses-2_task-rest_acq-fullbrain_run-1_bold.nii.gz',
+ '7t_trt/sub-02/ses-1/fmap/sub-02_ses-1_run-1_phasediff.nii.gz',
  ...,
  ]
 ```
@@ -125,9 +125,9 @@ Some other examples of get() requests:
 ```python
 >>> # Return all unique 'session' directories
 >>> layout.get(target='session', return_type='dir')
-['/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-08/ses-1',
- '/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-06/ses-2',
- '/Users/tal/Dropbox/Code/grabbids/grabbids/tests/data/7t_trt/sub-01/ses-2',
+['7t_trt/sub-08/ses-1',
+ '7t_trt/sub-06/ses-2',
+ '7t_trt/sub-01/ses-2',
  ...
  ]
 
@@ -140,7 +140,8 @@ Some other examples of get() requests:
 A common use case when working with BIDS projects is to find the nearest entity of a given type that matches a particular input image. For example, one might want to find the .bval or .bvec file that applies to a particular nifti image. The location of such files is underdetermined by the BIDS spec (which seeks to minimize redundancy, so it allows metadata and other files to be placed at varying levels of the project hierarchy). Fortunately, we can try to locate the nearest matching file by walking up the file tree from a given target:
 
 ```python
-
+>>> layout.find_match(target='bval', source='7t_trt/sub-03/ses-2/func/sub-03_ses-2_task-rest_acq-fullbrain_run-2_bold.nii.gz')
+"7t_trt/sub-03/sub-03-test.bval"
 ```
 
 ### For DIYers
