@@ -9,18 +9,18 @@ tests_require = []
 VERSION = "0.0.1"
 
 setup(
-    name="grabbit",
+    name="grabbids",
     version=VERSION,
-    description="get grabby with data structures",
+    description="get grabby with BIDS projects",
     maintainer='BIDS people',
     maintainer_email='tyarkoni@gmail.com',
-    url='http://github.com/INCF/grabbit',
+    url='http://github.com/INCF/grabbids',
     packages=find_packages(exclude=['tests', 'test_*']),
-    package_data={'grabbit.tests': ['data/*']},
-    install_requires=['six'],
+    package_data={'grabbids.tests': ['data/*']},
+    install_requires=['six', 'grabbit'],
     tests_require=tests_require,
     license='MIT',
-    download_url='http://github.com/INCF/grabbit/archive/%s.tar.gz' % VERSION,
+    download_url='http://github.com/INCF/grabbids/archive/%s.tar.gz' % VERSION,
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',

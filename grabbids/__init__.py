@@ -1,0 +1,1 @@
+from grabbids.bids import BIDSLayout as Layout
